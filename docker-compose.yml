@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3400:3400"
+    environment:
+      - NODE_ENV=production
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  admin:
+    build: ./admin
+    ports:
+      - "4000:80"
+    depends_on:
+      - backend
